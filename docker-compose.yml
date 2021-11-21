@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: 'srv3'
+    restart: always
+    image: nginx:latest
+    expose:
+      - "8082"
+    ports: 
+      - 82:80
+    depends_on:
+      - tables_app
+    volumes:
+      - ./nginx:/etc/nginx/conf.d #папка для конфигурации nginx
+      - ./app/acts/static:/srv/www/acts/static #статика приложения ActHiddeen
+      - ./logs:/srv/www/logs # удаляется папка в контейнере и заменяется на папку их хоста, логи nginx
+      - ./html:/srv/www/html #папка для статического содержимого - другие сайты
+
+  tables_app:
+    build: .
+    command: ../../acthiddeen_init.sh
+    environment:
+        APP_LAUNCH_SITE: docker
+    container_name: 'app1'
+    restart: always
+    volumes:
+      - .:/code
+    expose: 
+       - "8000"
+    ports:
+       - "8000:8000"
+
+#  db:
+#    image: mysql:5.6
+#    command: --innodb_use_native_aio=0
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: 123456789
+#      MYSQL_DATABASE: hiddenactsbase
+#      MYSQL_USER: django
+#      MYSQL_PASSWORD: aopqaopq27
+#    volumes:
+#      - ./data:/var/lib/mysql
+#    ports:
+#      - 3306:3306
+#    command: ['mysqld', '--character-set-server=utf8', '--collation-server=utf8_general_ci']
+
