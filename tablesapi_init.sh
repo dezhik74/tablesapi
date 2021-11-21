@@ -15,8 +15,8 @@
 
 echo "Starting server..."
 #echo "Django development server..."
-#python manage.py runserver 0.0.0.0:8084
+#python manage.py runserver 0.0.0.0:8082
 
 echo "Gunicorn server"
-gunicorn -b 0.0.0.0:8084 config.wsgi:application
+gunicorn -b 0.0.0.0:8082 config.wsgi:application
 

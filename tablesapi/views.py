@@ -9,6 +9,7 @@ from rest_framework import generics
 
 
 # Create your views here.
+from config.settings import WSGI_APPLICATION
 from tablesapi.models import Pictures
 from .filters import PictureFilter
 from .pagination import StandardResultsSetPagination
