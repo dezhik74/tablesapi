@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Pictures (models.Model):
     uid = models.CharField(max_length=10)
     title = models.CharField(max_length=100)
@@ -10,6 +11,8 @@ class Pictures (models.Model):
     authorLastName = models.CharField(max_length=50)
     authorUserName = models.CharField(max_length=50)
 
+    class Meta:
+        ordering = ['id']
 
 
 
