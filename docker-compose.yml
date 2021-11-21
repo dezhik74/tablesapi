@@ -12,6 +12,8 @@ services:
     volumes:
       - ./nginx:/etc/nginx/conf.d #папка для конфигурации nginx
       - ./logs:/srv/www/logs # удаляется папка в контейнере и заменяется на папку их хоста, логи nginx
+      - ./static:/srv/www/static/ #статика приложения delivery2
+
 
   tablesapp:
     build: .
