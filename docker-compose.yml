@@ -15,7 +15,7 @@ services:
 
   tables_app:
     build: .
-    command: ../../tablesapi_init.sh
+    command: ../tablesapi_init.sh
     environment:
         APP_LAUNCH_SITE: docker
     container_name: 'tablesapi'
